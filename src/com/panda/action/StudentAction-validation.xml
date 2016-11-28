@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+        <validators>
+        	<field name="student.Stu_Id">
+        		<field-validator type="requiredstring">
+        			<message>学号不能为空！</message>
+        		</field-validator>
+        	</field>
+        	<field name="student.Stu_Password">
+        		<field-validator type="regex">
+        		<param name="regexExpression"><![CDATA[[0-9]{6}]]></param>
+        		<message>默认密码必须为6位数字</message>
+        		</field-validator>
+        	</field>
+        	<field name="student.Stu_Name">
+        	<field-validator type="requiredstring">
+        			<message>姓名不能为空！</message>
+        		</field-validator>
+        	</field>
+        	<field name="student.Stu_Sex">
+        	<field-validator type="requiredstring">
+        			<message>性别不能为空！</message>
+        		</field-validator>
+        	</field>
+        	<field name="student.Stu_Email">
+        		<field-validator type="regex">
+        		<param name="regexExpression"><![CDATA[[0-9]{6}@qq.[a-z]{3}]]></param>
+        			<message>请输入正确的邮箱！</message>
+        		</field-validator>
+        	</field>
+        	<field name="student.Stu_Regist_Date">
+        		<field-validator type="date">
+        			<message>请输入正确的日期！</message>
+        		</field-validator>
+        	</field>
+        	<field name="student.Stu_Graduate_Date">
+        		<field-validator type="date">
+        			<message>请输入正确的日期！</message>
+        		</field-validator>
+        	</field>
+        </validators>

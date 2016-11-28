@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-18 10:19:31 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.panda.bean.LendBook" table="LENDBOOK">
+        <id name="LendBook_Id" type="java.lang.String">
+            <column name="LENDBOOK_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="LendBook_Name" type="java.lang.String">
+            <column name="LENDBOOK_NAME" />
+        </property>
+        <property name="LendBook_Pushing" type="java.lang.String">
+            <column name="LENDBOOK_PUSHING" />
+        </property>
+        <property name="LendBook_Price" type="float">
+            <column name="LENDBOOK_PRICE" />
+        </property>
+        <property name="LendBook_Time" type="java.util.Date">
+            <column name="LENDBOOK_TIME" />
+        </property>
+        <property name="LendBook_Return" type="java.util.Date">
+            <column name="LENDBOOK_RETURN" />
+        </property>
+        
+        <!-- 指定所对应的两个表的外键 -->
+        <many-to-one name="student" class="com.panda.bean.Student" lazy="false" cascade="save-update">
+            <column name="STU_ID" />
+        </many-to-one>
+        <many-to-one name="book" class="com.panda.bean.Book" lazy="false" cascade="save-update">
+            <column name="BOOK_ISBN" />
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>

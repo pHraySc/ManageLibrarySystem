@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="">
+		<!-- 连接数据库属性 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.password">722799</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/j2ee</property>
+		<property name="hibernate.connection.username">root</property>
+		<!-- 方言，告诉Hibernate使用哪一类的数据库 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- 根据持久化类生成表的策略 validate 通过映射文件检查持久化类与表的匹配 update 每次Hibernate启动的时候，检查表，如果表不存在，就新建，如果存在，就不做什么 
+			create 每一次Hibernate启动的时候，根据持久化类和映射文件生成表 create-drop -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- getCurrent方法获得session -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		<!-- 映射文件 -->
+		<mapping resource="com/panda/bean/Book.hbm.xml" />
+		<mapping resource="com/panda/bean/LendBook.hbm.xml" />
+		<mapping resource="com/panda/bean/Lib_Systemer.hbm.xml" />
+		<mapping resource="com/panda/bean/Student.hbm.xml" />
+		<mapping resource="com/panda/bean/Sys_Systemer.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

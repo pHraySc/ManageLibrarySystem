@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="queryBook" extends="struts-default">
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="input">/login.jsp</result>
+		</global-results>
+		<action name="selectBook" class="com.panda.action.QueryBookAction">
+			<result>/bookQuery.jsp</result>
+		</action>
+		<action name="queryLendBook" class="com.panda.action.QueryLendBookAction" method="queryLendBook">
+			<result>/lendQuery.jsp</result>
+		</action>
+		<action name="lendBook" class="com.panda.action.LendAction">
+			<result>/lendBook1.jsp</result>
+		</action>
+		<action name="returnBook" class="com.panda.action.ReturnBookAction">
+			<result>/returnBook.jsp</result>
+		</action>
+		<!-- <default-class-ref class="com.panda.ftsoft.action.LoginAction"></default-class-ref> -->
+	</package>
+	<!-- <constant name="struts.enable.DynamicMethodInvcation" value="true"></constant> 
+		感叹号寻找方法的方式 -->
+</struts>
+<!-- <result name="success" type="redirect"> 转发的默认类型为dispatcher,该方式不会丢失数据，并且地址栏不会变； 
+	而redirect则是重定向，数据不能保存，同时地址栏改变 -->

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+	<constant name="struts.multipart.maxSize" value="83886080"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="book" extends="struts-default">
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="input">/login.jsp</result>
+		</global-results>
+		<action name="book" class="com.panda.action.BookAction">
+			<result name="success" type="dispatcher">/bookManage.jsp?flag=1</result>
+			<result name="query" type="dispatcher">/bookManage.jsp</result>
+			<interceptor-ref name="defaultStack">
+				<param name="validation.excludeMethods">*</param>
+				<param name="validation.includeMethods">addBook,updateBook</param>
+				<param name="fileUpload.allowedExtensions">.jpg,.png</param>
+			</interceptor-ref>
+		</action>
+		<action name="getImage" class="com.panda.action.BookAction" method="getImage">
+			<result name="success">/bookManage.jsp</result>
+		</action>
+		<!-- <default-class-ref class="com.panda.ftsoft.action.LoginAction"></default-class-ref> -->
+	</package>
+	<!-- <constant name="struts.enable.DynamicMethodInvcation" value="true"></constant> 
+		感叹号寻找方法的方式 -->
+</struts>
+<!-- <result name="success" type="redirect"> 转发的默认类型为dispatcher,该方式不会丢失数据，并且地址栏不会变； 
+	而redirect则是重定向，数据不能保存，同时地址栏改变 -->

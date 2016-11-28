@@ -1,0 +1,38 @@
+#loginITC {
+	text-align: center;
+	height: 200px;
+	width: 300px;
+	position: absolute;
+	left: 37%;
+	top: 45%;
+	border-color: black;
+	border-width: 2px;
+}
+
+#image_LibTop {
+	margin:0px;
+	left:80px;
+	position: absolute;
+	height: 200px;
+	width: 1200px;
+}
+
+body {
+	width: 99%;
+	height: 100%;
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,
+		startColorStr=##15A216, endColorStr=#fafafa); /*IE*/
+	background: -moz-linear-gradient(top, #15A216, #fafafa); /*»ðºü*/
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000),
+		to(#8080C0)); /*¹È¸è*/
+	background-image: -webkit-gradient(linear, left bottom, left top, color-start(0, #15A216),
+		color-stop(1, #fafafa)); /* Safari & Chrome*/
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr='#15A216', endColorstr='#fafafa'); /*IE6 & IE7*/
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#15A216', endColorstr='#fafafa')";
+	/* IE8 */
+}
+#ErrorMsg{
+	color: red;
+}

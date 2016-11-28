@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<include file="struts/struts-login.xml"></include>
+	<include file="struts/struts-book.xml"></include> 
+	<include file="struts/struts-queryBook.xml"></include> 
+	<include file="struts/struts-student.xml"></include>
+</struts>
