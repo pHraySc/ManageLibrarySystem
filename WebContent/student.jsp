@@ -2,7 +2,7 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <html>
 <head>
-<link href="css/font_hover.css" rel="stylesheet" type="text/css">
+<link href="../css/font_hover.css" rel="stylesheet" type="text/css">
 	<title>图书管理系统-学生界面</title>
 </head>
 <body>

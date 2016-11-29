@@ -42,7 +42,7 @@
 <body onload="initAjax()">
 	<table id="tableBGcolor" align="center">
 		<tr>
-			<td colspan="2"><jsp:include page="headForLibSystemer.jsp" /></td>
+			<td colspan="2"><jsp:include page="headForSysSystemer.jsp" /></td>
 		</tr>
 		<tr>
 			<td>

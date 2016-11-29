@@ -19,10 +19,10 @@
 		<!-- getCurrent方法获得session -->
 		<property name="hibernate.current_session_context_class">thread</property>
 		<!-- 映射文件 -->
-		<mapping resource="com/panda/bean/Book.hbm.xml" />
-		<mapping resource="com/panda/bean/LendBook.hbm.xml" />
-		<mapping resource="com/panda/bean/Lib_Systemer.hbm.xml" />
-		<mapping resource="com/panda/bean/Student.hbm.xml" />
-		<mapping resource="com/panda/bean/Sys_Systemer.hbm.xml" />
+		<mapping resource="com/sccc/entity/Book.hbm.xml" />
+		<mapping resource="com/sccc/entity/LendBook.hbm.xml" />
+		<mapping resource="com/sccc/entity/Lib_Systemer.hbm.xml" />
+		<mapping resource="com/sccc/entity/Student.hbm.xml" />
+		<mapping resource="com/sccc/entity/Sys_Systemer.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

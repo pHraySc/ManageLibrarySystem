@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
 	<constant name="struts.multipart.maxSize" value="10000000"></constant>
 	<package name="login" extends="struts-default" namespace="">
 		<global-results>
 			<result name="error">/error.jsp</result>
 			<result name="input">/login.jsp</result>
 		</global-results>
-		<action name="login" class="com.panda.action.LoginAction">
+		<action name="login" class="com.sccc.action.LoginAction">
 			<result name="success">/testPage.jsp</result>
 			<result name="student">/student.jsp</result>
 			<result name="libSystemer">/librarySystemer.jsp</result>

@@ -2,12 +2,12 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<package name="zyj" extends="struts-default">
-		<action name="lxq" class="com.panda.action.StudentAction" method="addstudent">
+		<action name="lxq" class="com.sccc.action.StudentAction" method="addstudent">
 			<result name="error">/error.jsp</result>
 			<result name="success">/StudentsManage.jsp</result>
 			<result name="input">/addStudent.jsp</result>
 		</action>
-		<action name="lxq2" class="com.panda.action.ShowAllStudent" method="showAll">
+		<action name="lxq2" class="com.sccc.action.ShowAllStudent" method="showAll">
 			<result name="error">/error.jsp</result>
 			<result name="success">/StudentsManage.jsp</result>
 		</action>

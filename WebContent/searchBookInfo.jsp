@@ -18,7 +18,7 @@
 			<tr>
 				<td align="left" valign="top" height="400">
 					<br>图&nbsp;书&nbsp;书&nbsp;名&nbsp;：<br><br>
-					<s:textfield name="bookName" value="#bookName" size="15"/>
+					<s:textfield name="bookName" size="15"/>
 					<s:submit value="查 询"/>
 				</td>
 			</tr>

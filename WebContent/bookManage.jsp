@@ -1,9 +1,10 @@
-<%@ page language="java" pageEncoding="gb2312"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <html>
 <head>
 <link href="css/font_hover.css" rel="stylesheet" type="text/css">
-<title>Í¼Êé¹ÜÀíÏµÍ³</title>
+<title>å›¾ä¹¦ç®¡ç†ç³»ç»Ÿ</title>
 <style>
 	.font1{font-size:13px;}
 </style>
@@ -23,14 +24,14 @@ window.onload=function parseURL(){
 window.onload = function(){
 	var v = parseURL();
 	if(v['flag'] == 1){
-		alert('Í¼ÊéÌí¼Ó³É¹¦£¡');
+		alert('å›¾ä¹¦æ·»åŠ æˆåŠŸï¼');
 		}
 }	
 function check(thisObject){
 	var sTmp="";
 	sTmp=thisObject.value;
 	if(isNaN(sTmp)){
-		alert("ÇëÊäÈëÊı×Ö");
+		alert("è¯·è¾“å…¥æ•°å­—");
 		thisObject.select();
 	}
 }
@@ -49,7 +50,7 @@ function check(thisObject){
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				ÄÏ¾©Ê¦·¶´óÑ§£ºÄÏ¾©ÊĞÄşº£Â·122ºÅ&nbsp;&nbsp;ÓÊ±à£º210097<br>Ê¦½Ì½ÌÓıÑĞ¾¿ÖĞĞÄ°æÈ¨ËùÓĞ2010-2015
+				å—äº¬å¸ˆèŒƒå¤§å­¦ï¼šå—äº¬å¸‚å®æµ·è·¯122å·&nbsp;&nbsp;é‚®ç¼–ï¼š210097<br>å¸ˆæ•™æ•™è‚²ç ”ç©¶ä¸­å¿ƒç‰ˆæƒæ‰€æœ‰2010-2015
 			</td>
 		</tr>
 	</table>

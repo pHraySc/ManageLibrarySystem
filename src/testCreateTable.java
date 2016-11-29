@@ -10,12 +10,12 @@ import org.hibernate.Transaction;
 import org.junit.Test;
 
 import com.mysql.jdbc.Blob;
-import com.panda.bean.Book;
-import com.panda.bean.LendBook;
-import com.panda.bean.Student;
-import com.panda.daoImpl.LoginDaoImpl;
-import com.panda.daoImpl.StudentDaoImple;
-import com.panda.util.HibernateSessionFactory;
+import com.sccc.DAOimpl.LoginDaoImpl;
+import com.sccc.DAOimpl.StudentDaoImple;
+import com.sccc.entity.Book;
+import com.sccc.entity.LendBook;
+import com.sccc.entity.Student;
+import com.sccc.util.HibernateSessionFactory;
 
 
 public class testCreateTable {

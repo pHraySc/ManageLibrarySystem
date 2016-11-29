@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
 	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
 	<constant name="struts.multipart.maxSize" value="83886080"></constant>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
@@ -10,7 +10,7 @@
 			<result name="error">/error.jsp</result>
 			<result name="input">/login.jsp</result>
 		</global-results>
-		<action name="book" class="com.panda.action.BookAction">
+		<action name="book" class="com.sccc.action.BookAction">
 			<result name="success" type="dispatcher">/bookManage.jsp?flag=1</result>
 			<result name="query" type="dispatcher">/bookManage.jsp</result>
 			<interceptor-ref name="defaultStack">
@@ -19,7 +19,7 @@
 				<param name="fileUpload.allowedExtensions">.jpg,.png</param>
 			</interceptor-ref>
 		</action>
-		<action name="getImage" class="com.panda.action.BookAction" method="getImage">
+		<action name="getImage" class="com.sccc.action.BookAction" method="getImage">
 			<result name="success">/bookManage.jsp</result>
 		</action>
 		<!-- <default-class-ref class="com.panda.ftsoft.action.LoginAction"></default-class-ref> -->
