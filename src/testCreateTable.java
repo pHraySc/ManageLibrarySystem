@@ -65,8 +65,6 @@ public class testCreateTable {
 	@Test
 	public void testEn() {
 		Session session = HibernateSessionFactory.getSession();
-		Student student = new LoginDaoImpl().ConfirmStudent("1","1");
-		System.out.println(student.getStu_Name());
 	}
 	
 }

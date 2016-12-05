@@ -4,12 +4,12 @@
 <hibernate-configuration>
 	<session-factory name="">
 		<!-- 连接数据库属性 -->
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.password">722799</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/j2ee</property>
-		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.password">123</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@//202.115.82.9:1521/pdbtest</property>
+		<property name="hibernate.connection.username">ctx</property>
 		<!-- 方言，告诉Hibernate使用哪一类的数据库 -->
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
 		<!-- -->
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
