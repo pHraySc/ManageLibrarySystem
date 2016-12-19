@@ -2,13 +2,18 @@ package com.sccc.DAOimpl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.annotation.Scope;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sccc.DAO.StudentDao;
 import com.sccc.entity.Student;
-import com.sccc.util.HibernateSessionFactory;
 
 /*
 * @author MrC
@@ -16,8 +21,15 @@ import com.sccc.util.HibernateSessionFactory;
 * @parameter
 * @version
 */
+@Repository("StudentDao")
+@Scope("prototype")
+@Transactional(readOnly = false)
 public class StudentDaoImple implements StudentDao {
-
+	
+	@Resource(name="hibernateTemplate")
+	//resource注入，在xml中已经注解，在这里注入
+	private HibernateTemplate hibernateTemplate;
+	
 	public void addStudent(Student student) {
 		if (student == null) {
 			throw new NullPointerException("传入对象为空");
@@ -26,14 +38,14 @@ public class StudentDaoImple implements StudentDao {
 		Transaction transaction = null ;
 		try {
 			//得到session
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			//添加对象
 			session.save(student);
 			//提交事务
 			transaction.commit();
-			session.close();
+			
 		} catch(Exception e) {
 			//事务的回滚
 			if (transaction != null) {
@@ -50,7 +62,7 @@ public class StudentDaoImple implements StudentDao {
 		Transaction transaction = null ;
 		try {
 			//得到session对象
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();			
 			//开启事务
 			transaction = session.beginTransaction();
 			//得到查询出的Student对象
@@ -58,7 +70,7 @@ public class StudentDaoImple implements StudentDao {
 			//删除这个对象
 			session.delete(student);
 			transaction.commit();
-			session.close();
+			
 		} catch(Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -76,7 +88,7 @@ public class StudentDaoImple implements StudentDao {
 		List list =null;
 		try {
 			//创建session对象
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction() ;
 			/*
@@ -86,7 +98,7 @@ public class StudentDaoImple implements StudentDao {
 			list = query.list();
 			//提交事务
 			transaction.commit();
-			session.close();
+			
 		} catch(Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

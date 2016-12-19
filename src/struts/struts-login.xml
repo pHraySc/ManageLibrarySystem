@@ -8,7 +8,7 @@
 			<result name="error">/error.jsp</result>
 			<result name="input">/login.jsp</result>
 		</global-results>
-		<action name="login" class="com.sccc.action.LoginAction">
+		<action name="login" class="loginAction">
 			<result name="success">/testPage.jsp</result>
 			<result name="student">/student.jsp</result>
 			<result name="libSystemer">/librarySystemer.jsp</result>

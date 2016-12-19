@@ -4,13 +4,13 @@
 <hibernate-configuration>
 	<session-factory name="">
 		<!-- 连接数据库属性 -->
-		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-		<property name="hibernate.connection.password">123</property>
-		<property name="hibernate.connection.url">jdbc:oracle:thin:@//202.115.82.9:1521/pdbtest</property>
-		<property name="hibernate.connection.username">ctx</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">722799</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/j2ee</property>
 		<!-- 方言，告诉Hibernate使用哪一类的数据库 -->
-		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
-		<!-- -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 		<!-- 根据持久化类生成表的策略 validate 通过映射文件检查持久化类与表的匹配 update 每次Hibernate启动的时候，检查表，如果表不存在，就新建，如果存在，就不做什么 

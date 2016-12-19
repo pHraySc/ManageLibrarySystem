@@ -1,14 +1,25 @@
 package com.sccc.action;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.ActionSupport;
+import com.sccc.DAO.LendBookDao;
 import com.sccc.DAOimpl.LendBookDaoImpl;
 import com.sccc.entity.Book;
 import com.sccc.entity.LendBook;
 import com.sccc.entity.Student;
 
+@Controller("lendAction")
+@Scope("prototype")
 @SuppressWarnings("serial")
 public class LendAction extends ActionSupport {
-	private LendBookDaoImpl lendBookDaoImpl = new LendBookDaoImpl();
+	
+	@Resource(name = "LendBookDao")
+	private LendBookDao lendBookDaoImpl;
+	
 	private LendBook lendBook;
 	private Student student;
 	private Book book;

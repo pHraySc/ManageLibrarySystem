@@ -9,16 +9,16 @@
 			<result name="error">/error.jsp</result>
 			<result name="input">/login.jsp</result>
 		</global-results>
-		<action name="selectBook" class="com.sccc.action.QueryBookAction">
+		<action name="selectBook" class="queryBookAction">
 			<result>/bookQuery.jsp</result>
 		</action>
-		<action name="queryLendBook" class="com.sccc.action.QueryLendBookAction" method="queryLendBook">
+		<action name="queryLendBook" class="queryLendBookAction" method="queryLendBook">
 			<result>/lendQuery.jsp</result>
 		</action>
-		<action name="lendBook" class="com.sccc.action.LendAction">
+		<action name="lendBook" class="lendAction">
 			<result>/lendBook1.jsp</result>
 		</action>
-		<action name="returnBook" class="com.sccc.action.ReturnBookAction">
+		<action name="returnBook" class="returnBookAction">
 			<result>/returnBook.jsp</result>
 		</action>
 		<!-- <default-class-ref class="com.panda.ftsoft.action.LoginAction"></default-class-ref> -->

@@ -2,9 +2,14 @@ package com.sccc.action;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.sccc.DAO.*;
+import com.sccc.DAO.LoginDao;
 import com.sccc.DAOimpl.LoginDaoImpl;
 import com.sccc.entity.Lib_Systemer;
 import com.sccc.entity.Student;
@@ -13,9 +18,14 @@ import com.sccc.entity.Sys_Systemer;
  * @author 沈诚
  */
 
+@Controller("loginAction")
+@Scope("prototype")
 @SuppressWarnings("serial")
 public class LoginAction extends ActionSupport{
-	private LoginDaoImpl loginDaoImpl;
+	
+	@Resource(name = "LoginDao")
+	private LoginDao loginDaoImpl;
+	
 	private Student student;
 	private Lib_Systemer libSystemer;
 	private Sys_Systemer sysSystemer;
@@ -76,7 +86,6 @@ public class LoginAction extends ActionSupport{
 	@SuppressWarnings({ "unchecked", "static-access" })
 	@Override
 	public String execute() throws Exception {
-		loginDaoImpl = new LoginDaoImpl();
 		application = ac.getContext().getApplication();
 		session = ac.getContext().getSession();
 		System.out.println(username + password +role);

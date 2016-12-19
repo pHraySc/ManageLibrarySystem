@@ -1,6 +1,12 @@
 package com.sccc.action;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.ActionSupport;
+import com.sccc.DAO.StudentDao;
 import com.sccc.DAOimpl.StudentDaoImple;
 import com.sccc.entity.Student;
 
@@ -11,8 +17,13 @@ import com.sccc.entity.Student;
 * @version
 */
 @SuppressWarnings("serial")
+@Controller("studentAction")
+@Scope("prototype")
 public class StudentAction extends ActionSupport {
 	private Student student;//构造模型
+	
+	@Resource(name = "StudentDao")
+	private StudentDao studentDaoImple;
 
 	public Student getStudent() {
 		return student;
@@ -30,7 +41,7 @@ public class StudentAction extends ActionSupport {
 		//如果对象不为空，则添加至数据库
 		try {
 			System.out.println("hello");
-			new StudentDaoImple().addStudent(student);
+			studentDaoImple.addStudent(student);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

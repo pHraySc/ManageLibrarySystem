@@ -2,24 +2,35 @@ package com.sccc.DAOimpl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.annotation.Scope;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sccc.DAO.LendBookDao;
 import com.sccc.entity.Book;
 import com.sccc.entity.LendBook;
 import com.sccc.entity.Student;
-import com.sccc.util.HibernateSessionFactory;
 
-/*
+/**
 * @author MrC
 * @date 2016年11月18日下午3:13:10
 * @parameter
 * @version
 */
+@Repository("LendBookDao")
+@Scope("prototype")
+@Transactional(readOnly = false)
 public class LendBookDaoImpl implements LendBookDao {
 
+	@Resource(name="hibernateTemplate")
+	//resource注入，在xml中已经注解，在这里注入
+	private HibernateTemplate hibernateTemplate;
 	/*
 	 * 根据学生学号，分页查询所借书籍
 	*/
@@ -30,7 +41,7 @@ public class LendBookDaoImpl implements LendBookDao {
 		List record = null ;
 		try {
 			//得到session
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from LendBook where Stu_ID=?");
@@ -41,7 +52,6 @@ public class LendBookDaoImpl implements LendBookDao {
 			record = query.list();
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -59,7 +69,7 @@ public class LendBookDaoImpl implements LendBookDao {
 		int lendSize = 0 ;
 		try {
 			//得到session
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from LendBook where Stu_ID=?");
@@ -67,7 +77,6 @@ public class LendBookDaoImpl implements LendBookDao {
 			lendSize = query.list().size();
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -84,7 +93,7 @@ public class LendBookDaoImpl implements LendBookDao {
 		Transaction transaction = null ;
 		try {
 			//得到sesion，加载配置，创建表
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			/*
@@ -97,7 +106,6 @@ public class LendBookDaoImpl implements LendBookDao {
 			lendBook.setBook(book);
 			session.save(lendBook);
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			//事务的回滚
 			if (transaction != null) {
@@ -113,7 +121,7 @@ public class LendBookDaoImpl implements LendBookDao {
 		Transaction transaction = null ;
 		try {
 			//加载配置，创建表
-			session = HibernateSessionFactory.getSession() ;
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			if (lendBook == null) {
@@ -129,7 +137,6 @@ public class LendBookDaoImpl implements LendBookDao {
 			}
 			session.delete(lendBook2);
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			if (transaction != null) {
 				//事务回滚

@@ -2,22 +2,34 @@ package com.sccc.DAOimpl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.annotation.Scope;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sccc.DAO.BookDao;
 import com.sccc.entity.Book;
-import com.sccc.util.HibernateSessionFactory;
 
-/*
+/**
 * @author MrC
 * @date 2016年11月17日下午8:34:04
 * @parameter
 * @version
 */
+@Repository("BookDao")
+@Scope("prototype")
+@Transactional(readOnly = false)
 public class BookDaoImple implements BookDao {
+	
+	@Resource(name="hibernateTemplate")
+	//resource注入，在xml中已经注解，在这里注入
+	private HibernateTemplate hibernateTemplate;
 	
 	public int booksSize(String BookName){
 		Session session = null ;
@@ -25,7 +37,7 @@ public class BookDaoImple implements BookDao {
 		int BooksSize = 0 ;
 		try {
 			//得到session
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from Book where Book_Name=?");
@@ -33,7 +45,6 @@ public class BookDaoImple implements BookDao {
 			BooksSize = query.list().size();
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -42,13 +53,14 @@ public class BookDaoImple implements BookDao {
 		return BooksSize;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public List queryBookFormPages(String BookName, int pageNow, int pageSize){
 		Session session = null;
 		Transaction transaction = null;
 		List books = null;
 		try {
 			//通过sessionFactory获取session
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			Query q = session.createQuery("from Book where Book_Name=?");
@@ -59,7 +71,6 @@ public class BookDaoImple implements BookDao {
 			books = q.list();
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch (HibernateException e) {
 			if(transaction != null){
 				transaction.rollback();
@@ -77,14 +88,13 @@ public class BookDaoImple implements BookDao {
 		Transaction transaction = null ;
 		try {
 			//获得Session对象
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			//插入数据
 			session.save(book);
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			//如果事务对象不为空，事务回滚
 			if (transaction != null) {
@@ -103,7 +113,7 @@ public class BookDaoImple implements BookDao {
 		Transaction transaction = null ;
 		try {
 			//获得Session对象
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			
@@ -118,7 +128,6 @@ public class BookDaoImple implements BookDao {
 			session.delete(book);
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			//如果事务对象不为空，事务回滚
 			if (transaction != null) {
@@ -137,13 +146,12 @@ public class BookDaoImple implements BookDao {
 		Transaction transaction = null ;
 		try {
 			//获得Session对象
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			//更新数据
 			session.update(book);
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			//如果事务对象不为空，事务回滚
 			if (transaction != null) {
@@ -159,7 +167,7 @@ public class BookDaoImple implements BookDao {
 		Book book = null ;
 		try {
 			//获得Session对象
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			
@@ -172,7 +180,6 @@ public class BookDaoImple implements BookDao {
 			book = (Book) query.uniqueResult();
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			//如果事务对象不为空，事务回滚
 			if (transaction != null) {
@@ -195,7 +202,7 @@ public class BookDaoImple implements BookDao {
 		Transaction transaction = null ;
 		try {
 			//获得Session对象
-			session = HibernateSessionFactory.getSession();
+			session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 			//开启事务
 			transaction = session.beginTransaction();
 			System.out.println(Book_Name);
@@ -207,7 +214,6 @@ public class BookDaoImple implements BookDao {
 			System.out.println(allBook.size());
 			//提交事务
 			transaction.commit();
-			session.close();
 		} catch(Exception e) {
 			//如果事务对象不为空，事务回滚
 			if (transaction != null) {

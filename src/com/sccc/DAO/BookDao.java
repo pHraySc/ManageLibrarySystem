@@ -13,5 +13,9 @@ public interface BookDao {
 	void deleteBook(String Isbn);//删除图书
 	void updateBook(Book book);//修改图书
 	Book queryBookByName(String bookName);//根据书名查询图书
+	@SuppressWarnings("rawtypes")
 	List queryBookByNames(String Book_Name);//根据书名返回所有符合情况的书籍
+	@SuppressWarnings("rawtypes")
+	List queryBookFormPages(String BookName, int pageNow, int pageSize);
+	public int booksSize(String BookName);
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -15,15 +16,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.components.ActionMessage;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sccc.DAO.BookDao;
 import com.sccc.DAOimpl.BookDaoImple;
 import com.sccc.entity.Book;
 
+@Controller("bookAction")
+@Scope("prototype")
 @SuppressWarnings({ "serial", "unused" })
 public class BookAction extends ActionSupport {
-	private BookDaoImple bookDaoImple = new BookDaoImple();
+	
+	@Resource(name = "BookDao")
+	private BookDao bookDaoImple;
+	
 	private Book book;
 	private File photo;
 	private String photoFileName ;
@@ -31,6 +40,7 @@ public class BookAction extends ActionSupport {
 	private InputStream is;
 	private byte[] buffer;
 	private ActionContext actioncontext;
+	@SuppressWarnings({ "rawtypes", "static-access" })
 	private Map session = actioncontext.getContext().getSession();
 	private HttpServletRequest request = ServletActionContext.getRequest();
 	
@@ -79,7 +89,6 @@ public class BookAction extends ActionSupport {
 		this.book = book;
 	}
 	//增加图书
-	@SuppressWarnings("unchecked")
 	public String addBook() throws IOException {
 		float bookPrice = Float.parseFloat(this.getBook_Price());
 		int bookCount = Integer.parseInt(this.getBook_Count());

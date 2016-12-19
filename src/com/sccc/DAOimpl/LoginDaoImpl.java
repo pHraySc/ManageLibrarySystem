@@ -2,15 +2,20 @@ package com.sccc.DAOimpl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.annotation.Scope;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sccc.DAO.LoginDao;
 import com.sccc.entity.Lib_Systemer;
 import com.sccc.entity.Student;
 import com.sccc.entity.Sys_Systemer;
-import com.sccc.util.HibernateSessionFactory;
 
 /**
 * @author MrC
@@ -18,9 +23,15 @@ import com.sccc.util.HibernateSessionFactory;
 * @parameter userName是指账户名，password是指密码
 * @version
 */
+@Repository("LoginDao")
+@Scope("prototype")
+@Transactional(readOnly = false)
 public class LoginDaoImpl implements LoginDao {
 
-
+	@Resource(name="hibernateTemplate")
+	//resource注入，在xml中已经注解，在这里注入
+	private HibernateTemplate hibernateTemplate;
+	
 	//验证学生账号和密码
 	@SuppressWarnings("rawtypes")
 	public Student ConfirmStudent(String userName, String password) {
@@ -30,7 +41,7 @@ public class LoginDaoImpl implements LoginDao {
 			return null ;
 		}
 		//创建数据库表
-		Session session = HibernateSessionFactory.getSession();
+		Session session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 		Transaction transaction = null ;
 		Student student = null ;
 		try {
@@ -49,7 +60,7 @@ public class LoginDaoImpl implements LoginDao {
 			}
 			//提交事务
 			transaction.commit();
-			session.close();
+			
 		} catch (Exception e) {
 			if (transaction != null) {
 				//出错，事务回滚
@@ -68,7 +79,7 @@ public class LoginDaoImpl implements LoginDao {
 					return null ;
 				}
 				//创建数据库表
-				Session session = HibernateSessionFactory.getSession();
+				Session session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 				Transaction transaction = null ;
 				Lib_Systemer lib_Systemer = null ;
 				try {
@@ -87,7 +98,7 @@ public class LoginDaoImpl implements LoginDao {
 					}
 					//提交事务
 					transaction.commit();
-					session.close();
+					
 				} catch (Exception e) {
 					if (transaction != null) {
 						//出错，事务回滚
@@ -105,7 +116,7 @@ public class LoginDaoImpl implements LoginDao {
 					return null ;
 				}
 				//创建数据库表
-				Session session = HibernateSessionFactory.getSession();
+				Session session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 				Transaction transaction = null ;
 				Sys_Systemer system = null ;
 				try {
@@ -124,7 +135,7 @@ public class LoginDaoImpl implements LoginDao {
 					}
 					//提交事务
 					transaction.commit();
-					session.close();
+					
 				} catch (Exception e) {
 					if (transaction != null) {
 						//出错，事务回滚
