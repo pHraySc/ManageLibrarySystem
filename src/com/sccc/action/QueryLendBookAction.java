@@ -67,6 +67,7 @@ public class QueryLendBookAction extends ActionSupport {
 		Pager page = new Pager(this.getPageNow(), lendBookDaoImple.lendBookSize(student.getStu_Id()));
 		Map request = (Map) ActionContext.getContext().get("request");
 		System.out.println(list.size());
+		System.out.println(list.get(0));
 		request.put("queryList1", list);
 		request.put("page", page);
 		request.put("lendId", student.getStu_Id());

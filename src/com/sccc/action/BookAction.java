@@ -33,6 +33,14 @@ public class BookAction extends ActionSupport {
 	@Resource(name = "BookDao")
 	private BookDao bookDaoImple;
 	
+	
+	public BookDao getBookDaoImple() {
+		return bookDaoImple;
+	}
+	public void setBookDaoImple(BookDao bookDaoImple) {
+		this.bookDaoImple = bookDaoImple;
+	}
+
 	private Book book;
 	private File photo;
 	private String photoFileName ;
@@ -131,6 +139,7 @@ public class BookAction extends ActionSupport {
 		request1.put("selectedBook", selectedBook);
 		return "query";
 	}
+	
 	//获取图片
 	public void getImage() throws IOException{
 		HttpServletResponse res = ServletActionContext.getResponse();
@@ -138,6 +147,7 @@ public class BookAction extends ActionSupport {
 		byte[] photo = b.getBook_Photo();
 		res.setContentType("image/*");
 		ServletOutputStream fos = res.getOutputStream();
+		//根据HttpServletResponse将图片输出
 		if(photo != null && photo.length !=0){
 			for(int i = 0; i<photo.length;i++){
 				fos.write(photo[i]);

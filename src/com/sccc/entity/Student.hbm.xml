@@ -26,7 +26,7 @@
         <property name="Stu_Graduate_Date" type="java.util.Date">
             <column name="STU_GRADUATE_DATE" />
         </property>
-        <set name="lendBooks"  inverse="false" lazy="true" cascade="save-update"> 
+        <set name="lendBooks"  inverse="false" lazy="false" cascade="save-update"> 
         <!-- book表的外键 -->
             <key>
                 <column name="BOOK_ISBN" />

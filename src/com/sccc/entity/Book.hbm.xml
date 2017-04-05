@@ -29,7 +29,7 @@
         <property name="Book_Photo" type="binary">
         	<column name="BOOK_PHOTO"></column>
         </property>
-        <set name="lendBooks" table="LENDBOOK" inverse="false" lazy="true" cascade="save-update">
+        <set name="lendBooks" table="LENDBOOK" inverse="false" lazy="false" cascade="save-update">
         <!-- student表的外键 -->
             <key>
                 <column name="STU_ID" />

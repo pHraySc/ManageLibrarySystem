@@ -69,6 +69,7 @@ public class QueryBookAction extends ActionSupport {
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	@Override
 	public String execute() throws Exception {
+		System.out.println(new String(bookName.getBytes("ISO8859-1"),"UTF-8"));
 		if(bookName ==null||bookName.length() == 0){
 			ac.getContext().getSession().put("noneBook_Name", "请输入图书书名：");
 			return "noneBook_Name";
@@ -76,10 +77,11 @@ public class QueryBookAction extends ActionSupport {
 		List list = bookDaoImple.queryBookFormPages(bookName, pageNow, pageSize);
 		Pager page = new Pager(this.getPageNow(), bookDaoImple.booksSize(bookName));
 		Map request = (Map) ActionContext.getContext().get("request");
+		System.out.println(new String(bookName.getBytes("ISO8859-1"),"UTF-8"));
 		System.out.println(list.size());
 		request.put("list", list);
 		request.put("page3", page);
-		request.put("bookName", bookName);
+		request.put("bookName", new String(bookName.getBytes("ISO8859-1"),"UTF-8"));
 		return SUCCESS;
 	}
 }
